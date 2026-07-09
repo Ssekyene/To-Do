@@ -25,3 +25,24 @@ body {
     background: white;
     padding: 30px;
 }
+
+#sidebar h2 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  color: #ccc;
+}
+
+#sidebar ul {
+  list-style: none;
+}
+
+#sidebar li {
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#sidebar li:hover {
+  background: #303030;
+}
