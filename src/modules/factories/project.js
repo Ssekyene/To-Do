@@ -13,6 +13,10 @@ export default function createProject(name) {
     }
   }
 
+  function getTodo(todoId) {
+    return todos.find((todo) => todo.id === todoId);
+  }
+
   function getTodos() {
     return todos;
   }
@@ -21,6 +25,7 @@ export default function createProject(name) {
     name,
     addTodo,
     removeTodo,
+    getTodo,
     getTodos,
   };
 }
