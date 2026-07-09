@@ -5,6 +5,8 @@ import projectManager from "./modules/managers/projectManager.js";
 // Create the default project when the app starts
 projectManager.addProject("Inbox");
 
+projectManager.setActiveProject("Inbox");
+
 projectManager.addTodo("Inbox", {
   title: "Finish The Odin Project",
   description: "Complete the Todo List project",

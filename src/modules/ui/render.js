@@ -1,4 +1,9 @@
 import renderSidebar from "./sidebar.js";
+import renderTodoList from "./todoList.js";
+
 export default function renderApp() {
-    renderSidebar();
+  const main = document.querySelector("#main-content");
+
+  renderSidebar();
+  renderTodoList(main);
 }

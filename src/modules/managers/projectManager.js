@@ -2,6 +2,15 @@ import createProject from "../factories/project.js";
 import createTodo from "../factories/todo.js";
 
 const projects = [];
+let activeProject = null;
+
+function setActiveProject(projectName) {
+  activeProject = getProject(projectName);
+}
+
+function getActiveProject() {
+  return activeProject;
+}
 
 function addProject(name) {
   const project = createProject(name);
@@ -36,4 +45,6 @@ export default {
   getProjects,
   getProject,
   addTodo,
+  setActiveProject,
+  getActiveProject,
 };

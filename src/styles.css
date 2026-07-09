@@ -46,3 +46,16 @@ body {
 #sidebar li:hover {
   background: #303030;
 }
+
+#main-content h1 {
+  margin-bottom: 2rem;
+}
+
+.todo-card {
+  border: 1px solid #ddd;
+  border-left: 6px solid #3498db;
+  padding: 16px;
+  margin-bottom: 16px;
+  border-radius: 8px;
+  background: #fafafa;
+}
