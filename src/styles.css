@@ -59,3 +59,8 @@ body {
   border-radius: 8px;
   background: #fafafa;
 }
+
+.active-project {
+  background: #3d7eff;
+  color: white;
+}

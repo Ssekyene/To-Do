@@ -1,6 +1,6 @@
 import projectManager from "../managers/projectManager.js";
 
-export default function renderSidebar() {
+export default function renderSidebar(onProjectSelect) {
     const sidebar = document.querySelector("#sidebar");
 
     sidebar.replaceChildren();
@@ -21,6 +21,15 @@ export default function renderSidebar() {
     projectManager.getProjects().forEach((project) => {
       const item = document.createElement("li");
       item.textContent = project.name;
+
+      const active = projectManager.getActiveProject();
+      if(active === project) {
+        item.classList.add("active-project");
+      }
+      
+      item.addEventListener("click", () => {
+        onProjectSelect(project.name);
+      });
 
       list.appendChild(item);
     });
