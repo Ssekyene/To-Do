@@ -6,24 +6,31 @@
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background: #f4f4f4;
+    background: #eceff3;
 }
 
 #app {
     display: grid;
-    grid-template-columns: 260px 1fr;
+    grid-template-columns: 280px 1fr;
     min-height: 100vh;
 }
 
 #sidebar {
-    background: #202020;
+    background: #1f2937;
     color: white;
-    padding: 20px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
 }
 
 #main-content {
-    background: white;
-    padding: 30px;
+    background: #f9fafb;
+    padding: 40px;
+}
+
+#sidebar h1 {
+    margin-bottom: 40px;
+    font-size: 2rem;
 }
 
 #sidebar h2 {
@@ -38,13 +45,15 @@ body {
 }
 
 #sidebar li {
-  padding: 10px;
-  border-radius: 6px;
+  padding: 14px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  transition: .2s;
   cursor: pointer;
 }
 
 #sidebar li:hover {
-  background: #303030;
+   background: rgba(255,255,255,.08);
 }
 
 #main-content h1 {
@@ -52,15 +61,48 @@ body {
 }
 
 .todo-card {
-  border: 1px solid #ddd;
-  border-left: 6px solid #3498db;
-  padding: 16px;
-  margin-bottom: 16px;
-  border-radius: 8px;
-  background: #fafafa;
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 3px 10px rgba(0,0,0,.08);
+    border-left: 6px solid #3b82f6;
+}
+
+.todo-card:hover {
+    transform: translateY(-2px);
+    transition: .2s;
 }
 
 .active-project {
-  background: #3d7eff;
-  color: white;
+    background: #3b82f6;
+    font-weight: bold;
+}
+
+#sidebar button {
+    margin-bottom: 30px;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background: #3b82f6;
+    color: white;
+    font-size: .95rem;
+}
+
+#sidebar button:hover {
+    background: #2563eb;
+
+}
+
+.high {
+    border-left-color: #ef4444;
+}
+
+.medium {
+    border-left-color: #f59e0b;
+}
+
+.low {
+    border-left-color: #22c55e;
 }

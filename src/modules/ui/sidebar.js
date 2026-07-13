@@ -1,3 +1,4 @@
+import { add } from "date-fns";
 import projectManager from "../managers/projectManager.js";
 
 export default function renderSidebar(onProjectSelect) {
@@ -5,9 +6,9 @@ export default function renderSidebar(onProjectSelect) {
 
     sidebar.replaceChildren();
 
-    const title = document.createElement("h1");
-    title.textContent = "To→Do";
-    sidebar.appendChild(title);
+    const logo = document.createElement("h1");
+    logo.textContent = "📝 To-Do";
+    sidebar.appendChild(logo);
 
     // render projects
     const heading = document.createElement("h2");
@@ -15,6 +16,10 @@ export default function renderSidebar(onProjectSelect) {
     heading.style.marginTop = "2rem";
 
     sidebar.appendChild(heading);
+
+    const addButton = document.createElement("button");
+    addButton.textContent = "+ New Project";
+    sidebar.appendChild(addButton);
 
     const list = document.createElement("ul");
 
@@ -35,4 +40,5 @@ export default function renderSidebar(onProjectSelect) {
     });
 
     sidebar.appendChild(list);
+
 }
