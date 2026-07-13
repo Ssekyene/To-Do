@@ -28,7 +28,7 @@ export default function renderSidebar(onProjectSelect) {
       }
       
       item.addEventListener("click", () => {
-        onProjectSelect(project.name);
+        onProjectSelect(project.id);
       });
 
       list.appendChild(item);

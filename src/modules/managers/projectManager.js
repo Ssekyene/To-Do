@@ -4,8 +4,8 @@ import createTodo from "../factories/todo.js";
 const projects = [];
 let activeProject = null;
 
-function setActiveProject(projectName) {
-  activeProject = getProject(projectName);
+function setActiveProject(projectId) {
+  activeProject = getProjectById(projectId);
 }
 
 function getActiveProject() {
@@ -24,12 +24,12 @@ function getProjects() {
   return projects;
 }
 
-function getProject(name) {
-  return projects.find((project) => project.name === name);
+function getProjectById(projectId) {
+  return projects.find((project) => project.id === projectId);
 }
 
-function addTodo(projectName, todoData) {
-  const project = getProject(projectName);
+function addTodo(projectId, todoData) {
+  const project = getProjectById(projectId);
 
   if (!project) return;
 
@@ -43,7 +43,7 @@ function addTodo(projectName, todoData) {
 export default {
   addProject,
   getProjects,
-  getProject,
+  getProjectById,
   addTodo,
   setActiveProject,
   getActiveProject,

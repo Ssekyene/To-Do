@@ -7,8 +7,8 @@ export default function renderApp() {
 
   // a call back funtion that executes when an item in the side bar
   // is clicked on
-  renderSidebar((projectName) => {
-    projectManager.setActiveProject(projectName);
+  renderSidebar((projectId) => {
+    projectManager.setActiveProject(projectId);
 
     renderApp();
   });

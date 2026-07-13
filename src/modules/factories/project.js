@@ -1,4 +1,9 @@
+function generateId() {
+  return crypto.randomUUID();
+}
+
 export default function createProject(name) {
+  const id = generateId();
   const todos = [];
 
   function addTodo(todo) {
@@ -22,7 +27,12 @@ export default function createProject(name) {
   }
 
   return {
-    name,
+    get id() {
+      return id;
+    },
+    get name() {
+      return name;
+    },
     addTodo,
     removeTodo,
     getTodo,
