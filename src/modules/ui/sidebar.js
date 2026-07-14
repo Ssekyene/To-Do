@@ -1,5 +1,6 @@
 import { add } from "date-fns";
 import projectManager from "../managers/projectManager.js";
+import { openProjectDialog } from "./dialog.js";
 
 export default function renderSidebar(onProjectSelect) {
     const sidebar = document.querySelector("#sidebar");
@@ -19,6 +20,16 @@ export default function renderSidebar(onProjectSelect) {
 
     const addButton = document.createElement("button");
     addButton.textContent = "+ New Project";
+
+    addButton.addEventListener("click", () => {
+      openProjectDialog((projectName) => {
+
+          // We'll fill this in next.
+
+      });
+
+    });
+
     sidebar.appendChild(addButton);
 
     const list = document.createElement("ul");
