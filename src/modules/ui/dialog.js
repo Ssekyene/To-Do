@@ -2,35 +2,50 @@ export function openProjectDialog(onCreate) {
   const dialog = document.createElement("dialog");
 
   dialog.innerHTML = `
-    <form method="dialog">
+    <form id="project-form">
+      <h2>New Project</h2>
 
-        <h2>New Project</h2>
+      <p class="dialog-subtitle">
+        Organize your tasks into a new project.
+      </p>
 
-        <input
-            type="text"
-            name="projectName"
-            placeholder="Project name"
-            required
+      <label for="project-name">
+        Project Name
+      </label>
+
+      <input
+        id="project-name"
+        name="projectName"
+        type="text"
+        placeholder="e.g. Work"
+        required
+        autofocus
+      />
+
+      <menu class="dialog-actions">
+        <button
+          type="button"
+          id="cancel-btn"
         >
+          Cancel
+        </button>
 
-        <menu>
-            <button value="cancel">
-                Cancel
-            </button>
-
-            <button id="create-btn" value="default">
-                Create
-            </button>
-        </menu>
-
+        <button
+          type="submit"
+          class="primary-btn"
+        >
+          Create Project
+        </button>
+      </menu>
     </form>
-  `;
+`;
 
   document.body.appendChild(dialog);
 
   dialog.showModal();
 
-  const form = dialog.querySelector("form");
+  const form = dialog.querySelector("#project-form");
+  const cancelButton = dialog.querySelector("#cancel-btn");
 
   form.addEventListener("submit", (event) => {
       event.preventDefault();
@@ -43,6 +58,10 @@ export function openProjectDialog(onCreate) {
       dialog.close();
       dialog.remove();
 
+  });
+
+  cancelButton.addEventListener("click", () => {
+    dialog.close();
   });
 
   dialog.addEventListener("close", () => {
