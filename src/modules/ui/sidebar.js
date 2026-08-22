@@ -1,6 +1,6 @@
 import { add } from "date-fns";
 import projectManager from "../managers/projectManager.js";
-import { openProjectDialog } from "./dialog.js";
+//import { openProjectDialog } from "./dialog.js";
 
 export default function renderSidebar(onProjectSelect) {
     const sidebar = document.querySelector("#sidebar");
@@ -19,16 +19,17 @@ export default function renderSidebar(onProjectSelect) {
     sidebar.appendChild(heading);
 
     const addButton = document.createElement("button");
+    addButton.id = "new-project-btn";
     addButton.textContent = "+ New Project";
 
-    addButton.addEventListener("click", () => {
+    /*addButton.addEventListener("click", () => {
       openProjectDialog((projectName) => {
 
           // We'll fill this in next.
 
       });
 
-    });
+    });*/
 
     sidebar.appendChild(addButton);
 
@@ -37,6 +38,7 @@ export default function renderSidebar(onProjectSelect) {
     projectManager.getProjects().forEach((project) => {
       const item = document.createElement("li");
       item.textContent = project.name;
+      item.dataset.projectId = project.id;
 
       const active = projectManager.getActiveProject();
       if(active === project) {
