@@ -16,5 +16,5 @@ export default function renderApp() {
 
   renderTodoList(main);
 
-  registerEvents();
+  registerEvents(renderApp);
 }

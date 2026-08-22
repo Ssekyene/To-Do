@@ -21,19 +21,11 @@ export default function renderSidebar(onProjectSelect) {
     const addButton = document.createElement("button");
     addButton.id = "new-project-btn";
     addButton.textContent = "+ New Project";
-
-    /*addButton.addEventListener("click", () => {
-      openProjectDialog((projectName) => {
-
-          // We'll fill this in next.
-
-      });
-
-    });*/
-
+    
     sidebar.appendChild(addButton);
 
     const list = document.createElement("ul");
+    list.id = "project-list";
 
     projectManager.getProjects().forEach((project) => {
       const item = document.createElement("li");
@@ -45,9 +37,9 @@ export default function renderSidebar(onProjectSelect) {
         item.classList.add("active-project");
       }
       
-      item.addEventListener("click", () => {
+      /*item.addEventListener("click", () => {
         onProjectSelect(project.id);
-      });
+      });*/
 
       list.appendChild(item);
     });
