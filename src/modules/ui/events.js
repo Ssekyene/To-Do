@@ -1,9 +1,10 @@
 import projectManager from "../managers/projectManager.js";
-import { openProjectDialog } from "./dialog.js";
+import { openProjectDialog, openTodoDialog, } from "./dialog.js";
 
 export default function registerEvents(renderApp) {
   const newProjectButton = document.querySelector("#new-project-btn");
   const projectList = document.querySelector("#project-list");
+  const newTodoButton = document.querySelector("#new-todo-btn");
 
   if (newProjectButton) {
     newProjectButton.addEventListener("click", () => {
@@ -27,6 +28,18 @@ export default function registerEvents(renderApp) {
       projectManager.setActiveProject(projectId);
 
       renderApp();
+    });
+  }
+
+  if (newTodoButton) {
+    newTodoButton.addEventListener("click", () => {
+      openTodoDialog((todoData) => {
+        const project = projectManager.getActiveProject();
+        projectManager.addTodo(project.id, todoData);
+        
+        renderApp();
+      });
+
     });
   }
 

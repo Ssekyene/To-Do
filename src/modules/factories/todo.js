@@ -7,7 +7,6 @@ export default function createTodo({
   description = "",
   dueDate = "",
   priority = "medium",
-  notes = "",
 }) {
   const id = generateId();
 
@@ -43,11 +42,7 @@ export default function createTodo({
     get priority() {
       return priority;
     },
-
-    get notes() {
-      return notes;
-    },
-
+    
     get completed() {
       return completed;
     },
