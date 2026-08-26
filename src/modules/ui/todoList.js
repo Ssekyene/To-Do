@@ -20,6 +20,8 @@ export default function renderTodoList(main) {
   main.appendChild(header);
 
   const todos = project.getTodos();
+  const todoList = document.createElement("div");
+  todoList.id = "todo-list";
 
   todos.forEach((todo) => {
     const card = document.createElement("article");
@@ -28,6 +30,8 @@ export default function renderTodoList(main) {
       "todo-card",
       todo.priority
     );
+
+    card.dataset.todoId = todo.id;
 
     card.innerHTML = `
       <div class="todo-card-content">
@@ -49,6 +53,8 @@ export default function renderTodoList(main) {
       </span>
     `;
 
-    main.appendChild(card);
+    todoList.append(card);
   });
+
+  main.appendChild(todoList);
 }

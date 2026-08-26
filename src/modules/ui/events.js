@@ -1,10 +1,11 @@
 import projectManager from "../managers/projectManager.js";
-import { openProjectDialog, openTodoDialog, } from "./dialog.js";
+import { openProjectDialog, openTodoDialog, openTodoDetailsDialog } from "./dialog.js";
 
 export default function registerEvents(renderApp) {
   const newProjectButton = document.querySelector("#new-project-btn");
   const projectList = document.querySelector("#project-list");
   const newTodoButton = document.querySelector("#new-todo-btn");
+  const todoList = document.querySelector("#todo-list");
 
   if (newProjectButton) {
     newProjectButton.addEventListener("click", () => {
@@ -37,6 +38,27 @@ export default function registerEvents(renderApp) {
         const project = projectManager.getActiveProject();
         projectManager.addTodo(project.id, todoData);
         
+        renderApp();
+      });
+
+    });
+  }
+
+  if (todoList) {
+    todoList.addEventListener("click", (event) => {
+      const todoCard = event.target.closest("[data-todo-id]");
+
+      if (!todoCard) return;
+
+      const todoId = todoCard.dataset.todoId;
+
+      const todo = projectManager.getTodoById(todoId);
+
+      if(!todo) return;
+      
+      openTodoDetailsDialog(todo, (updatedData) => {
+        projectManager.updateTodo(todoId, updatedData);
+
         renderApp();
       });
 

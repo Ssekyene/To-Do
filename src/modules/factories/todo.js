@@ -7,6 +7,7 @@ export default function createTodo({
   description = "",
   dueDate = "",
   priority = "medium",
+  notes = "",
 }) {
   const id = generateId();
 
@@ -30,6 +31,10 @@ export default function createTodo({
     get title() {
       return title;
     },
+
+    // set title(value) {
+    //   this.title = value;
+    // },
 
     get description() {
       return description;

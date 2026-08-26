@@ -40,6 +40,20 @@ function addTodo(projectId, todoData) {
   return todo;
 }
 
+function getTodoById(todoId) {
+  const project = getActiveProject();
+  return project.getTodo(todoId);
+}
+
+
+function updateTodo(todoId, updatedData) {
+  const todo = getTodoById(todoId);
+
+  if (!todo) return;
+
+  todo.update(updatedData);
+}
+
 export default {
   addProject,
   getProjects,
@@ -47,4 +61,6 @@ export default {
   addTodo,
   setActiveProject,
   getActiveProject,
+  getTodoById,
+  updateTodo,
 };

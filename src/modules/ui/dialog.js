@@ -70,6 +70,7 @@ export function openProjectDialog(onCreate) {
 
 }
 
+
 export function openTodoDialog(onCreate) {
   const dialog = document.createElement("dialog");
 
@@ -167,6 +168,132 @@ export function openTodoDialog(onCreate) {
     if (!todoData.title) return;
 
     onCreate(todoData);
+
+    dialog.close();
+  });
+
+  cancelButton.addEventListener("click", () => {
+    dialog.close();
+  });
+
+  dialog.addEventListener("close", () => {
+    dialog.remove();
+  });
+}
+
+
+export function openTodoDetailsDialog(todo, onSave) {
+  const dialog = document.createElement("dialog");
+
+  dialog.innerHTML = `
+    <form id="todo-details-form">
+
+      <h2>Edit Todo</h2>
+
+      <label for="todo-title">
+        Title
+      </label>
+
+      <input
+        id="todo-title"
+        name="title"
+        type="text"
+        value="${todo.title}"
+        required
+      >
+
+      <label for="todo-description">
+        Description
+      </label>
+
+      <textarea
+        id="todo-description"
+        name="description"
+        rows="4"
+      >${todo.description}</textarea>
+
+      <label for="todo-due-date">
+        Due Date
+      </label>
+
+      <input
+        id="todo-due-date"
+        name="dueDate"
+        type="date"
+        value="${todo.dueDate}"
+      >
+
+      <label for="todo-priority">
+        Priority
+      </label>
+
+      <select
+        id="todo-priority"
+        name="priority"
+      >
+        <option
+          value="low"
+          ${todo.priority === "low" ? "selected" : ""}
+        >
+          Low
+        </option>
+
+        <option
+          value="medium"
+          ${todo.priority === "medium" ? "selected" : ""}
+        >
+          Medium
+        </option>
+
+        <option
+          value="high"
+          ${todo.priority === "high" ? "selected" : ""}
+        >
+          High
+        </option>
+      </select>
+
+      <menu class="dialog-actions">
+
+        <button
+          type="button"
+          id="cancel-btn"
+        >
+          Cancel
+        </button>
+
+        <button
+          type="submit"
+          class="primary-btn"
+        >
+          Save Changes
+        </button>
+
+      </menu>
+
+    </form>
+  `;
+
+  document.body.appendChild(dialog);
+
+  dialog.showModal();
+
+  const form = dialog.querySelector("#todo-details-form");
+  const cancelButton = dialog.querySelector("#cancel-btn");
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const updatedData = {
+      title: form.title.value.trim(),
+      description: form.description.value.trim(),
+      dueDate: form.dueDate.value,
+      priority: form.priority.value,
+    };
+
+    if (!updatedData.title) return;
+
+    onSave(updatedData);
 
     dialog.close();
   });

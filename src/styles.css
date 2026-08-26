@@ -73,6 +73,7 @@ body {
     box-shadow: 0 2px 8px rgba(0, 0, 0, .06);
     transition: transform .15s ease,
                 box-shadow .15s ease;
+    cursor: pointer;
 }
 
 .todo-card:hover {
@@ -246,4 +247,3 @@ dialog button {
 .primary-btn:hover {
     background: #1d4ed8;
 }
-
