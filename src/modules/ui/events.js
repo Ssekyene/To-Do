@@ -45,9 +45,41 @@ export default function registerEvents(renderApp) {
   }
 
   if (todoList) {
+    // using event delegation
     todoList.addEventListener("click", (event) => {
-      const todoCard = event.target.closest("[data-todo-id]");
+      
+      // delete
+      const deleteButton = event.target.closest(".delete-todo-btn");
+      if (deleteButton) {
+        const todoCard = deleteButton.closest("[data-todo-id]");
 
+        const todoId = todoCard.dataset.todoId;
+
+        projectManager.deleteTodo(todoId);
+
+        renderApp();
+
+        return;
+      }
+
+      // complete
+      const checkbox = event.target.closest(".todo-checkbox");
+      if (checkbox) {
+        const todoCard = checkbox.closest("[data-todo-id]");
+        const todoId = todoCard.dataset.todoId;
+        const todo = projectManager.getTodoById(todoId);
+
+        if(!todo) return;
+
+        todo.toggleComplete();
+
+        renderApp();
+
+        return;
+      }
+
+      // open details
+      const todoCard = event.target.closest("[data-todo-id]");
       if (!todoCard) return;
 
       const todoId = todoCard.dataset.todoId;

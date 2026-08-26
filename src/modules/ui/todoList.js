@@ -31,26 +31,47 @@ export default function renderTodoList(main) {
       todo.priority
     );
 
+    if (todo.completed) {
+      card.classList.add("completed");
+    }
     card.dataset.todoId = todo.id;
 
     card.innerHTML = `
       <div class="todo-card-content">
+        <input
+          type="checkbox"
+          class="todo-checkbox"
+          ${todo.completed ? "checked": ""}
+        >
 
-        <h3>${todo.title}</h3>
+        <div>
+          <h3>${todo.title}</h3>
 
-        <p>
-          ${todo.description || "No description"}
-        </p>
+          <p>
+            ${todo.description || "No description"}
+          </p>
 
-        <span class="todo-date">
-          ${todo.dueDate || "No due date"}
-        </span>
+          <span class="todo-date">
+            ${todo.dueDate || "No due date"}
+          </span>
+        </div>
 
       </div>
 
-      <span class="priority-label">
-        ${todo.priority}
-      </span>
+      <div class="todo-card-actions">
+        <span class="priority-label">
+          ${todo.priority}
+        </span>
+
+        <button
+          type="button"
+          class="delete-todo-btn"
+          aria-label="Delete ${todo.title}"
+        >
+          Delete
+        </button>
+        
+      </div>
     `;
 
     todoList.append(card);

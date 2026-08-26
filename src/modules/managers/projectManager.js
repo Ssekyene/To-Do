@@ -54,6 +54,14 @@ function updateTodo(todoId, updatedData) {
   todo.update(updatedData);
 }
 
+function deleteTodo(todoId) {
+  const project = getActiveProject();
+
+  if (!project) return;
+  
+  project.removeTodo(todoId);
+}
+
 export default {
   addProject,
   getProjects,
@@ -63,4 +71,5 @@ export default {
   getActiveProject,
   getTodoById,
   updateTodo,
+  deleteTodo,
 };
