@@ -4,7 +4,6 @@ import { saveData, loadData } from "../storage/storage.js";
 
 // initialise all the project defaults here
 let projects = [];
-let activeProject = null;
 let activeProjectId = "";
 
 // load existing projects
@@ -68,17 +67,13 @@ if (!loaded) {
   });
 }
 
-
-activeProject = getActiveProject();
-if (activeProject) activeProjectId = activeProject.id;
-
-
 function setActiveProject(projectId) {
-  activeProject = getProjectById(projectId);
+  activeProjectId = projectId;
+  save();
 }
 
 function getActiveProject() {
-  return activeProject;
+  return getProjectById(activeProjectId);
 }
 
 function addProject(name) {
@@ -106,7 +101,6 @@ function addTodo(projectId, todoData) {
 
   const todo = createTodo(todoData);
 
-  console.log("project", project);
   project.addTodo(todo);
 
   save();
@@ -116,6 +110,9 @@ function addTodo(projectId, todoData) {
 
 function getTodoById(todoId) {
   const project = getActiveProject();
+
+  if (!project) return;
+
   return project.getTodo(todoId);
 }
 
@@ -171,7 +168,7 @@ function load() {
   });
 
   console.log(data);
-  activeProjectId = data.projects[0].id;
+  activeProjectId = data.activeProjectId || projects[0]?.id || "";
   setActiveProject(activeProjectId);
 
   return true;
