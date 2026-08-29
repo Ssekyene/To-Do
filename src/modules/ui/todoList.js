@@ -19,7 +19,7 @@ export default function renderTodoList(main) {
 
   main.appendChild(header);
 
-  const todos = project.getTodos();
+  const todos = project.todos;
   const todoList = document.createElement("div");
   todoList.id = "todo-list";
 

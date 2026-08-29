@@ -2,8 +2,8 @@ function generateId() {
   return crypto.randomUUID();
 }
 
-export default function createProject(name) {
-  const id = generateId();
+export default function createProject(name, projectId) {
+  const id = projectId ? projectId : generateId();
   const todos = [];
 
   function addTodo(todo) {
@@ -32,6 +32,9 @@ export default function createProject(name) {
     },
     get name() {
       return name;
+    },
+    get todos() {
+      return todos;
     },
     addTodo,
     removeTodo,

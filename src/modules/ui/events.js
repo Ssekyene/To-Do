@@ -73,6 +73,8 @@ export default function registerEvents(renderApp) {
 
         todo.toggleComplete();
 
+        projectManager.save();
+
         renderApp();
 
         return;

@@ -3,18 +3,18 @@ function generateId() {
 }
 
 export default function createTodo({
+  id = generateId(),
   title,
   description = "",
   dueDate = "",
   priority = "medium",
-  notes = "",
+  completed = false,
 }) {
-  const id = generateId();
 
-  let completed = false;
+  let isCompleted = completed;
 
   function toggleComplete() {
-    completed = !completed;
+    isCompleted = !isCompleted;
   }
 
   function update(updates) {
@@ -22,7 +22,6 @@ export default function createTodo({
     if (updates.description !== undefined) description = updates.description;
     if (updates.dueDate !== undefined) dueDate = updates.dueDate;
     if (updates.priority !== undefined) priority = updates.priority;
-    if (updates.notes !== undefined) notes = updates.notes;
   }
 
   return {
@@ -31,10 +30,6 @@ export default function createTodo({
     get title() {
       return title;
     },
-
-    // set title(value) {
-    //   this.title = value;
-    // },
 
     get description() {
       return description;
@@ -49,7 +44,7 @@ export default function createTodo({
     },
     
     get completed() {
-      return completed;
+      return isCompleted;
     },
 
     toggleComplete,

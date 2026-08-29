@@ -1,8 +1,77 @@
 import createProject from "../factories/project.js";
 import createTodo from "../factories/todo.js";
+import { saveData, loadData } from "../storage/storage.js"; 
 
-const projects = [];
+// initialise all the project defaults here
+let projects = [];
 let activeProject = null;
+let activeProjectId = "";
+
+// load existing projects
+const loaded = load();
+console.log("Loaded?", loaded);
+
+if (!loaded) {
+  console.log("Loaded?", loaded);
+  // add default projects when the app starts
+  const inbox = addProject("Inbox");
+  
+  setActiveProject(inbox.id); // active by default
+  console.log("active project:", getActiveProject().name);
+  
+  addTodo(inbox.id, {
+    title: "Finish The Odin Project",
+    description: "Complete the Todo List project",
+    dueDate: "2026-07-15",
+    priority: "high",
+  });
+  
+  addTodo(inbox.id, {
+    title: "Buy groceries",
+    priority: "low",
+  });
+  
+  
+  //another project
+  const work = addProject("Work");
+  
+  addTodo(work.id, {
+    title: "Finish The Contract",
+    description: "Complete the Cyber School project",
+    dueDate: "2026-09-30",
+    priority: "high",
+  });
+  
+  
+  //another project
+  const shopping = addProject("Shopping");
+  
+  addTodo(shopping.id, {
+    title: "Buy gentle trousers",
+    description: "Find some good affordable gentle trousers from town",
+    dueDate: "2026-07-20",
+    priority: "high",
+  });
+  
+  addTodo(shopping.id, {
+    title: "Buy cool shirts",
+    description: "Find some good affordable cool shirts from town",
+    dueDate: "2026-07-20",
+    priority: "medium",
+  });
+  
+  addTodo(shopping.id, {
+    title: "Buy a bag",
+    description: "Find some fancy bag from town",
+    dueDate: "2026-07-20",
+    priority: "low",
+  });
+}
+
+
+activeProject = getActiveProject();
+if (activeProject) activeProjectId = activeProject.id;
+
 
 function setActiveProject(projectId) {
   activeProject = getProjectById(projectId);
@@ -16,6 +85,8 @@ function addProject(name) {
   const project = createProject(name);
 
   projects.push(project);
+
+  save();
 
   return project;
 }
@@ -35,7 +106,10 @@ function addTodo(projectId, todoData) {
 
   const todo = createTodo(todoData);
 
+  console.log("project", project);
   project.addTodo(todo);
+
+  save();
 
   return todo;
 }
@@ -52,6 +126,8 @@ function updateTodo(todoId, updatedData) {
   if (!todo) return;
 
   todo.update(updatedData);
+
+  save();
 }
 
 function deleteTodo(todoId) {
@@ -60,6 +136,45 @@ function deleteTodo(todoId) {
   if (!project) return;
   
   project.removeTodo(todoId);
+
+  save();
+}
+
+function restoreTodo(todoData) {
+  return createTodo(todoData);
+}
+
+function save() {
+  saveData({
+    projects,
+    activeProjectId,
+  });
+
+}
+
+function load() {
+  const data = loadData();
+
+  if (!data) return false;
+
+  projects = data.projects.map((projectData) => {
+    // recreate project
+    const project = createProject(projectData.name, projectData.id);
+
+    // Restore todos with their methods
+    projectData.todos.forEach(todoData => {
+      const todo = createTodo(todoData);
+      project.addTodo(todo);
+    });
+
+    return project;
+  });
+
+  console.log(data);
+  activeProjectId = data.projects[0].id;
+  setActiveProject(activeProjectId);
+
+  return true;
 }
 
 export default {
@@ -72,4 +187,7 @@ export default {
   getTodoById,
   updateTodo,
   deleteTodo,
+  restoreTodo,
+  save,
+  load,
 };
