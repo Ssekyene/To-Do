@@ -303,3 +303,16 @@ dialog button {
     text-decoration: underline;
 }
 
+.danger-btn {
+    border: none;
+    background: #dc2626;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.danger-btn:hover {
+    background: #b91c1c;
+}
+

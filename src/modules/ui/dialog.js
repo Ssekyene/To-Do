@@ -44,6 +44,13 @@ export function openProjectDialog(onCreate) {
 
   dialog.showModal();
 
+  // close the dialog on outside click
+  dialog.addEventListener("click", (event) => {
+    if (event.target === dialog) {
+      dialog.close();
+    }
+  });
+
   const form = dialog.querySelector("#project-form");
   const cancelButton = dialog.querySelector("#cancel-btn");
 
@@ -151,6 +158,13 @@ export function openTodoDialog(onCreate) {
   document.body.appendChild(dialog);
 
   dialog.showModal();
+
+  // close the dialog on outside click
+  dialog.addEventListener("click", (event) => {
+    if (event.target === dialog) {
+      dialog.close();
+    }
+  });
 
   const form = dialog.querySelector("#todo-form");
   const cancelButton = dialog.querySelector("#cancel-btn");
@@ -278,6 +292,13 @@ export function openTodoDetailsDialog(todo, onSave) {
 
   dialog.showModal();
 
+  // close the dialog on outside click
+  dialog.addEventListener("click", (event) => {
+    if (event.target === dialog) {
+      dialog.close();
+    }
+  });
+
   const form = dialog.querySelector("#todo-details-form");
   const cancelButton = dialog.querySelector("#cancel-btn");
 
@@ -294,6 +315,71 @@ export function openTodoDetailsDialog(todo, onSave) {
     if (!updatedData.title) return;
 
     onSave(updatedData);
+
+    dialog.close();
+  });
+
+  cancelButton.addEventListener("click", () => {
+    dialog.close();
+  });
+
+  dialog.addEventListener("close", () => {
+    dialog.remove();
+  });
+}
+
+export function openDeleteTodoDialog(todo, onConfirm) {
+  const dialog = document.createElement("dialog");
+
+  dialog.innerHTML = `
+    <form id="delete-todo-form">
+
+      <h2>Delete Todo?</h2>
+
+      <p>
+        Are you sure you want to delete
+        <strong>${todo.title}</strong>?
+      </p>
+
+      <menu class="dialog-actions">
+
+        <button
+          type="button"
+          id="cancel-btn"
+        >
+          Cancel
+        </button>
+
+        <button
+          type="submit"
+          class="danger-btn"
+        >
+          Delete
+        </button>
+
+      </menu>
+
+    </form>
+  `;
+
+  document.body.appendChild(dialog);
+
+  dialog.showModal();
+
+  // close the dialog on outside click
+  dialog.addEventListener("click", (event) => {
+    if (event.target === dialog) {
+      dialog.close();
+    }
+  });
+
+  const form = dialog.querySelector("#delete-todo-form");
+  const cancelButton = dialog.querySelector("#cancel-btn");
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    onConfirm();
 
     dialog.close();
   });

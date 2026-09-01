@@ -1,5 +1,5 @@
 import projectManager from "../managers/projectManager.js";
-import { openProjectDialog, openTodoDialog, openTodoDetailsDialog } from "./dialog.js";
+import { openProjectDialog, openTodoDialog, openTodoDetailsDialog, openDeleteTodoDialog } from "./dialog.js";
 
 export default function registerEvents(renderApp) {
   const newProjectButton = document.querySelector("#new-project-btn");
@@ -55,9 +55,15 @@ export default function registerEvents(renderApp) {
 
         const todoId = todoCard.dataset.todoId;
 
-        projectManager.deleteTodo(todoId);
+        const todo = projectManager.getTodoById(todoId);
 
-        renderApp();
+        if(!todo) return;
+
+        openDeleteTodoDialog(todo, () => {
+          projectManager.deleteTodo(todoId);
+
+          renderApp();
+        });
 
         return;
       }
