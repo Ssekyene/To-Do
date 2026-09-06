@@ -36,10 +36,6 @@ export default function renderSidebar(onProjectSelect) {
       if(active === project) {
         item.classList.add("active-project");
       }
-      
-      /*item.addEventListener("click", () => {
-        onProjectSelect(project.id);
-      });*/
 
       list.appendChild(item);
     });

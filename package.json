@@ -29,6 +29,7 @@
     "webpack-dev-server": "^5.2.4"
   },
   "dependencies": {
-    "date-fns": "^4.4.0"
+    "date-fns": "^4.4.0",
+    "lucide": "^1.38.0"
   }
 }

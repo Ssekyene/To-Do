@@ -1,6 +1,6 @@
-import "./styles.css";
+//import "./styles/styles.css";
+import "./styles/main.css";
 import renderApp from "./modules/ui/render.js";
-import projectManager from "./modules/managers/projectManager.js";
 
 //console.log(projectManager.getProjects());
 
