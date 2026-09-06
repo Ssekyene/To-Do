@@ -7,7 +7,63 @@ export default function renderSidebar(onProjectSelect) {
 
     sidebar.replaceChildren();
 
-    const logo = document.createElement("h1");
+    sidebar.innerHTML = `
+      <div class="app-brand">
+          <div class="brand-icon">✓</div>
+          <span>To-Do</span>
+      </div>
+
+      <button
+          class="add-project-btn"
+          type="button"
+      >
+          <span>+</span>
+          Add project
+      </button>
+
+      <div class="projects-section">
+
+          <p class="sidebar-heading">
+              Projects
+          </p>
+
+          <div id="project-list"></div>
+
+      </div>
+    `;
+
+    // render projects from projectManager
+    const projectList = document.querySelector("#project-list");
+    projectList.replaceChildren();
+
+    const projects = projectManager.getProjects() || [];
+    const activeProject = projectManager.getActiveProject ? projectManager.getActiveProject() : null;
+
+    projects.forEach(project => {
+      const btn = document.createElement("button");
+      btn.className = "project-item";
+      btn.type = "button";
+      btn.dataset.projectId = project.id;
+
+      const icon = document.createElement("span");
+      icon.className = "project-icon";
+      icon.textContent = "○";
+
+      const label = document.createElement("span");
+      label.textContent = project.name;
+
+      btn.appendChild(icon);
+      btn.appendChild(label);
+
+      if (activeProject && activeProject.id === project.id) {
+        btn.classList.add("active");
+      }
+      
+      projectList.appendChild(btn);
+    });
+
+
+    /*const logo = document.createElement("h1");
     logo.textContent = "📝 To-Do";
     sidebar.appendChild(logo);
 
@@ -40,6 +96,6 @@ export default function renderSidebar(onProjectSelect) {
       list.appendChild(item);
     });
 
-    sidebar.appendChild(list);
+    sidebar.appendChild(list); */
 
 }

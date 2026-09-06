@@ -6,16 +6,24 @@ export default function renderTodoList(main) {
   const project = projectManager.getActiveProject();
 
   const header = document.createElement("div");
-  header.classList.add("todo-header");
+  header.classList.add("page-header");
+
+  const headerSection = document.createElement("div");
 
   const heading = document.createElement("h1");
   heading.textContent = project.name;
 
+  const description = document.createElement("p");
+  description.textContent = "Your tasks";
+
+  headerSection.append(heading, description);
+
   const addTodoButton = document.createElement("button");
   addTodoButton.id = "new-todo-btn";
-  addTodoButton.textContent = "+ New Todo";
+  addTodoButton.classList.add("add-todo-btn");
+  addTodoButton.textContent = "+ Add task";
 
-  header.append(heading, addTodoButton);
+  header.append(headerSection, addTodoButton);
 
   main.appendChild(header);
 
