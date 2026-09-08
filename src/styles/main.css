@@ -323,10 +323,17 @@ dialog h2 {
     font-size: 1.3rem;
 }
 
-dialog p {
+.dialog-subtitle {
     margin: 0 0 24px;
     color: var(--muted);
     line-height: 1.5;
+}
+
+dialog label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
 }
 
 dialog input,
@@ -339,6 +346,7 @@ dialog select {
     background: white;
     color: var(--text);
     outline: none;
+    margin-bottom: 16px;
     transition:
         border-color 0.15s ease,
         box-shadow 0.15s ease;
@@ -403,6 +411,15 @@ dialog select:focus {
 
 .danger-btn:hover {
     background: #dc2626;
+}
+
+.primary-btn,
+.cancel-btn,
+.danger-btn {
+    transition:
+        background-color 0.15s ease,
+        border-color 0.15s ease,
+        color 0.15s ease;
 }
 
 
