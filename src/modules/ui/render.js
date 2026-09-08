@@ -2,6 +2,7 @@ import projectManager from "../managers/projectManager.js";
 import renderSidebar from "./sidebar.js";
 import renderTodoList from "./todoList.js";
 import registerEvents from "./events.js";
+import { createIcons, Pencil, Trash2 } from "lucide";
 
 export default function renderApp() {
   const main = document.querySelector("#main-content");
@@ -15,6 +16,14 @@ export default function renderApp() {
   });
 
   renderTodoList(main);
+
+  // load icons after rendering the cards
+  createIcons({
+      icons: {
+          Pencil,
+          Trash2,
+      },
+  });
 
   registerEvents(renderApp);
 }

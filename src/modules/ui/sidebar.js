@@ -15,6 +15,7 @@ export default function renderSidebar(onProjectSelect) {
 
       <button
           class="add-project-btn"
+          id="new-project-btn"
           type="button"
       >
           <span>+</span>

@@ -86,21 +86,26 @@ export default function registerEvents(renderApp) {
         return;
       }
 
-      // open details
-      const todoCard = event.target.closest("[data-todo-id]");
-      if (!todoCard) return;
 
-      const todoId = todoCard.dataset.todoId;
+      // edit
+      const editButton = event.target.closest(".edit-todo-btn");
+      if (editButton) {
+        const todoCard = editButton.closest("[data-todo-id]");
+        if (!todoCard) return;
 
-      const todo = projectManager.getTodoById(todoId);
+        const todoId = todoCard.dataset.todoId;
 
-      if(!todo) return;
-      
-      openTodoDetailsDialog(todo, (updatedData) => {
-        projectManager.updateTodo(todoId, updatedData);
+        const todo = projectManager.getTodoById(todoId);
+        if (!todo) return;
 
-        renderApp();
-      });
+        openTodoDetailsDialog(todo, (updatedData) => {
+          projectManager.updateTodo(todoId, updatedData);
+
+          renderApp();
+        });
+
+        return;
+      }
 
     });
   }

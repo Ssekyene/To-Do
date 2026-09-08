@@ -26,6 +26,7 @@ export function openProjectDialog(onCreate) {
         <button
           type="button"
           id="cancel-btn"
+          class="cancel-btn"
         >
           Cancel
         </button>
@@ -139,6 +140,7 @@ export function openTodoDialog(onCreate) {
         <button
           type="button"
           id="cancel-btn"
+          class="cancel-btn"
         >
           Cancel
         </button>
@@ -272,6 +274,7 @@ export function openTodoDetailsDialog(todo, onSave) {
         <button
           type="button"
           id="cancel-btn"
+          class="cancel-btn"
         >
           Cancel
         </button>
@@ -346,6 +349,7 @@ export function openDeleteTodoDialog(todo, onConfirm) {
         <button
           type="button"
           id="cancel-btn"
+          class="cancel-btn"
         >
           Cancel
         </button>

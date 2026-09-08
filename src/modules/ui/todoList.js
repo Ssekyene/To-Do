@@ -1,5 +1,6 @@
 import projectManager from "../managers/projectManager.js";
 
+
 export default function renderTodoList(main) {
   main.replaceChildren();
 
@@ -73,10 +74,20 @@ export default function renderTodoList(main) {
 
         <button
           type="button"
+          class="edit-todo-btn"
+          title="Edit"
+          aria-label="Edit ${todo.title}"
+        >
+          <i data-lucide="pencil"></i>
+        </button>
+
+        <button
+          type="button"
           class="delete-todo-btn"
+          title="Delete"
           aria-label="Delete ${todo.title}"
         >
-          Delete
+          <i data-lucide="trash-2"></i>
         </button>
         
       </div>
