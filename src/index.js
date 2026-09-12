@@ -1,4 +1,3 @@
-//import "./styles/styles.css";
 import "./styles/main.css";
 import renderApp from "./modules/ui/render.js";
 
