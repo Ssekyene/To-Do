@@ -424,7 +424,6 @@ dialog select:focus {
 
 
 @media (max-width: 700px) {
-
     #app {
         grid-template-columns: 1fr;
     }
@@ -433,20 +432,59 @@ dialog select:focus {
         padding: 12px 16px;
     }
 
-    #main-content {
-        padding: 24px 16px;
-    }
-
     .app-brand {
         margin-bottom: 12px;
     }
 
-    .projects-section {
+    .project-list{
+        display: flex;
+        gap: 6px;
         overflow-x: auto;
+        padding-bottom: 4px;
     }
 
     .project-item {
+        flex: 0 0 auto;
         width: auto;
         white-space: nowrap;
     }
-}
+
+    #main-content {
+        padding: 24px 16px;
+    }
+
+    .page-header {
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    .page-header h1 {
+        font-size: 1.5rem;
+    }
+
+    .add-todo-btn {
+        flex-shrink: 0;
+    }
+
+    .todo-card {
+        align-items: flex-start;
+        gap: 12px;
+        padding: 14px;
+    }
+
+    .todo-card-content {
+        min-width: 0;
+    }
+
+    .todo-card-content > div {
+        min-width: 0;
+    }
+
+    .todo-card-content h3 {
+        overflow-wrap: anywhere;
+    }
+
+    .todo-card-actions {
+        flex-shrink: 0;
+    }
+}   

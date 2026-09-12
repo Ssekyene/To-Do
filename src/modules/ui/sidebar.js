@@ -28,7 +28,7 @@ export default function renderSidebar(onProjectSelect) {
               Projects
           </p>
 
-          <div id="project-list"></div>
+          <div id="project-list" class="project-list"></div>
 
       </div>
     `;
@@ -63,40 +63,5 @@ export default function renderSidebar(onProjectSelect) {
       projectList.appendChild(btn);
     });
 
-
-    /*const logo = document.createElement("h1");
-    logo.textContent = "📝 To-Do";
-    sidebar.appendChild(logo);
-
-    // render projects
-    const heading = document.createElement("h2");
-    heading.textContent = "Projects";
-    heading.style.marginTop = "2rem";
-
-    sidebar.appendChild(heading);
-
-    const addButton = document.createElement("button");
-    addButton.id = "new-project-btn";
-    addButton.textContent = "+ New Project";
-    
-    sidebar.appendChild(addButton);
-
-    const list = document.createElement("ul");
-    list.id = "project-list";
-
-    projectManager.getProjects().forEach((project) => {
-      const item = document.createElement("li");
-      item.textContent = project.name;
-      item.dataset.projectId = project.id;
-
-      const active = projectManager.getActiveProject();
-      if(active === project) {
-        item.classList.add("active-project");
-      }
-
-      list.appendChild(item);
-    });
-
-    sidebar.appendChild(list); */
 
 }
