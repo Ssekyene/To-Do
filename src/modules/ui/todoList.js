@@ -50,6 +50,7 @@ export default function renderTodoList(main) {
         <input
           type="checkbox"
           class="todo-checkbox"
+          aria-label="Mark ${todo.title} as complete"
           ${todo.completed ? "checked": ""}
         >
 
