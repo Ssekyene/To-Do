@@ -1,7 +1,17 @@
-import { format, parseISO } from "date-fns";
+import { format, isToday, isTomorrow, parseISO } from "date-fns";
 
 export function formatTodoDate(dateString) {
   if (!dateString) return "No due date";
+  
+  const date = parseISO(dateString);
+  
+  if (isToday(date)) {
+    return "Today";
+  }
 
-  return format(parseISO(dateString), "dd MMM yyyy");
+  if (isTomorrow(date)) {
+    return "Tomorrow";
+  }
+
+  return format(date, "dd MMM yyyy");
 } 

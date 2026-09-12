@@ -37,7 +37,7 @@ if (!loaded) {
   addTodo(work.id, {
     title: "Finish The Contract",
     description: "Complete the Cyber School project",
-    dueDate: "2026-09-30",
+    dueDate: "2026-09-13",
     priority: "high",
   });
   
