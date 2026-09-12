@@ -1,4 +1,5 @@
 import projectManager from "../managers/projectManager.js";
+import { formatTodoDate } from "../utils/date.js";
 
 
 export default function renderTodoList(main) {
@@ -62,7 +63,7 @@ export default function renderTodoList(main) {
           </p>
 
           <span class="todo-date">
-            ${todo.dueDate || "No due date"}
+            ${formatTodoDate(todo.dueDate) || "No due date"}
           </span>
         </div>
 
