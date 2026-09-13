@@ -215,7 +215,7 @@ select {
 
 .project-actions-menu {
     position: absolute;
-    top: calc(100% - 2px);
+    top: calc(100% + 4px);
     right: 4px;
     z-index: 20;
     width: 150px;
@@ -640,4 +640,9 @@ dialog select:focus {
     .todo-card-actions {
         flex-shrink: 0;
     }
+
+    .project-actions-btn {
+        opacity: 1;
+    }
+
 }   

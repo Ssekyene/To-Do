@@ -51,6 +51,19 @@ export default function registerEvents(renderApp) {
         });
 
         menu.hidden = !menu.hidden;
+
+         if (!menu.hidden) {
+          setTimeout(() => {
+            document.addEventListener(
+              "click",
+              () => {
+                menu.hidden = true;
+              },
+              { once: true }
+            );
+          }, 0);
+        }
+
         return;
       }
 
@@ -103,6 +116,10 @@ export default function registerEvents(renderApp) {
       if (!projectItem) return;
 
       const projectId = projectItem.dataset.projectId;
+
+      projectList.querySelectorAll(".project-actions-menu").forEach((menu) => {
+        menu.hidden = true;
+      });
 
       projectManager.setActiveProject(projectId);
 
