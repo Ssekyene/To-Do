@@ -1,5 +1,12 @@
 import projectManager from "../managers/projectManager.js";
-import { openProjectDialog, openTodoDialog, openTodoDetailsDialog, openDeleteTodoDialog, openRenameProjectDialog } from "./dialog.js";
+import { 
+  openProjectDialog, 
+  openTodoDialog, 
+  openTodoDetailsDialog, 
+  openDeleteTodoDialog, 
+  openRenameProjectDialog,
+  openDeleteProjectDialog,
+ } from "./dialog.js";
 
 export default function registerEvents(renderApp) {
   const newProjectButton = document.querySelector("#new-project-btn");
@@ -60,6 +67,29 @@ export default function registerEvents(renderApp) {
 
         openRenameProjectDialog(project, (newName) => {
           projectManager.renameProject(projectId, newName);
+          renderApp();
+        });
+
+        return;
+      }
+
+      // handle a delete project click
+      const deleteButton = event.target.closest(".delete-project-btn");
+
+      if (deleteButton) {
+        event.stopPropagation();
+
+        const projectId = deleteButton.dataset.projectId;
+        const project = projectManager.getProjectById(projectId);
+
+        if (!project) return;
+
+        openDeleteProjectDialog(project, () => {
+          // Protect the very first project from deletion
+          if (project === projectManager.getProjects()[0]) {
+            alert(`Oops! Sorry, you can't delete ${project.name} project. However, you can modify it.`);
+          }
+          projectManager.deleteProject(projectId);
           renderApp();
         });
 

@@ -13,19 +13,19 @@ console.log("Loaded?", loaded);
 if (!loaded) {
   console.log("Loaded?", loaded);
   // add default projects when the app starts
-  const inbox = addProject("Inbox");
+  const personal = addProject("Personal");
   
-  setActiveProject(inbox.id); // active by default
+  setActiveProject(personal.id); // active by default
   console.log("active project:", getActiveProject().name);
   
-  addTodo(inbox.id, {
+  addTodo(personal.id, {
     title: "Finish The Odin Project",
     description: "Complete the Todo List project",
     dueDate: "2026-07-15",
     priority: "high",
   });
   
-  addTodo(inbox.id, {
+  addTodo(personal.id, {
     title: "Buy groceries",
     priority: "low",
   });
@@ -100,6 +100,31 @@ function renameProject(projectId, newName) {
   if (!project) return;
 
   project.rename(newName);
+
+  save();
+
+  return project;
+}
+
+function deleteProject(projectId) {
+  const projectIndex = projects.findIndex(
+    (project) => project.id === projectId
+  );
+
+  if (projectIndex === -1) return;
+  // protect the first project from deletion
+  if (projectIndex === 0) return;
+
+  const project = projects[projectIndex];
+
+  projects.splice(projectIndex, 1);
+
+  if (activeProjectId === projectId) {
+    // set the project before as the next active project
+    const nextProjectIndex = projectIndex - 1;
+    const nextProject = nextProjectIndex > -1 ? projects[nextProjectIndex] : null;
+    activeProjectId = nextProject ? nextProject.id : "";
+  }
 
   save();
 
@@ -191,6 +216,7 @@ export default {
   getProjects,
   getProjectById,
   renameProject,
+  deleteProject,
   addTodo,
   setActiveProject,
   getActiveProject,

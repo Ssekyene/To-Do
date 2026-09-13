@@ -466,3 +466,61 @@ export function openRenameProjectDialog(project, onRename) {
     dialog.remove();
   });
 }
+
+export function openDeleteProjectDialog(project, onConfirm) {
+  const dialog = document.createElement("dialog");
+
+  dialog.innerHTML = `
+    <form id="delete-project-form">
+      <h2>Delete Project?</h2>
+
+      <p>
+        Are you sure you want to delete
+        <strong>${project.name}</strong>?
+        All tasks in this project will also be deleted.
+      </p>
+
+      <menu class="dialog-actions">
+        <button
+          type="button"
+          id="cancel-btn"
+          class="cancel-btn"
+        >
+          Cancel
+        </button>
+
+        <button
+          type="submit"
+          class="danger-btn"
+        >
+          Delete Project
+        </button>
+      </menu>
+    </form>
+  `;
+
+  document.body.appendChild(dialog);
+  dialog.showModal();
+
+  dialog.addEventListener("click", (event) => {
+    if (event.target === dialog) dialog.close();
+  });
+
+  const form = dialog.querySelector("#delete-project-form");
+  const cancelButton = dialog.querySelector("#cancel-btn");
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    onConfirm();
+    dialog.close();
+  });
+
+  cancelButton.addEventListener("click", () => {
+    dialog.close();
+  });
+
+  dialog.addEventListener("close", () => {
+    dialog.remove();
+  });
+}
