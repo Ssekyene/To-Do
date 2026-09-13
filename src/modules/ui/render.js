@@ -2,7 +2,7 @@ import projectManager from "../managers/projectManager.js";
 import renderSidebar from "./sidebar.js";
 import renderTodoList from "./todoList.js";
 import registerEvents from "./events.js";
-import { createIcons, Pencil, Trash2 } from "lucide";
+import { createIcons, Pencil, Trash2, Ellipsis } from "lucide";
 
 export default function renderApp() {
   const main = document.querySelector("#main-content");
@@ -22,6 +22,7 @@ export default function renderApp() {
       icons: {
           Pencil,
           Trash2,
+          Ellipsis,
       },
   });
 

@@ -1,5 +1,5 @@
 import projectManager from "../managers/projectManager.js";
-import { openProjectDialog, openTodoDialog, openTodoDetailsDialog, openDeleteTodoDialog } from "./dialog.js";
+import { openProjectDialog, openTodoDialog, openTodoDetailsDialog, openDeleteTodoDialog, openRenameProjectDialog } from "./dialog.js";
 
 export default function registerEvents(renderApp) {
   const newProjectButton = document.querySelector("#new-project-btn");
@@ -19,7 +19,55 @@ export default function registerEvents(renderApp) {
   }
 
   if (projectList) {
+    // using event delegation
     projectList.addEventListener("click", (event) => {
+
+      // handle project actions button click
+      const actionsButton = event.target.closest(".project-actions-btn");
+
+      if (actionsButton) {
+        event.stopPropagation();
+
+        const projectId = actionsButton.dataset.projectId;
+
+        const menu = projectList.querySelector(
+          `.project-actions-menu[data-project-id="${projectId}"]`
+        );
+
+        if (!menu) return;
+
+        // hide all the unchosen menus
+        projectList.querySelectorAll(".project-actions-menu").forEach((item) => {
+          if (item !== menu) {
+            item.hidden = true;
+          }
+        });
+
+        menu.hidden = !menu.hidden;
+        return;
+      }
+
+      // handle a rename button click
+      const renameButton = event.target.closest(".rename-project-btn");
+
+      if (renameButton) {
+        event.stopPropagation();
+
+        const projectId = renameButton.dataset.projectId;
+        const project = projectManager.getProjectById(projectId);
+
+        if (!project) return;
+
+        openRenameProjectDialog(project, (newName) => {
+          projectManager.renameProject(projectId, newName);
+          renderApp();
+        });
+
+        return;
+      }
+
+
+      // handle a project navigation click ie opening a certain project
       const projectItem = event.target.closest("[data-project-id]");
 
       if (!projectItem) return;

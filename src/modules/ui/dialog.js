@@ -396,3 +396,73 @@ export function openDeleteTodoDialog(todo, onConfirm) {
     dialog.remove();
   });
 }
+
+export function openRenameProjectDialog(project, onRename) {
+  const dialog = document.createElement("dialog");
+
+  dialog.innerHTML = `
+    <form id="rename-project-form">
+      <h2>Rename Project</h2>
+      <p class="dialog-subtitle">
+        Give your project a new name.
+      </p>
+
+      <label for="project-name">Project Name</label>
+      <input
+        id="project-name"
+        name="projectName"
+        type="text"
+        value="${project.name}"
+        required
+        autofocus
+      />
+
+      <menu class="dialog-actions">
+        <button
+          type="button"
+          id="cancel-btn"
+          class="cancel-btn"
+        >
+          Cancel
+        </button>
+
+        <button
+          type="submit"
+          class="primary-btn"
+        >
+          Rename Project
+        </button>
+      </menu>
+    </form>
+  `;
+
+  document.body.appendChild(dialog);
+  dialog.showModal();
+
+  // close the dialog on outside click
+  dialog.addEventListener("click", (event) => {
+    if (event.target === dialog) dialog.close();
+  });
+
+  const form = dialog.querySelector("#rename-project-form");
+  const cancelButton = dialog.querySelector("#cancel-btn");
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const projectName = form.projectName.value.trim();
+
+    if (!projectName) return;
+
+    onRename(projectName);
+    dialog.close();
+  });
+
+  cancelButton.addEventListener("click", () => {
+    dialog.close();
+  });
+
+  dialog.addEventListener("close", () => {
+    dialog.remove();
+  });
+}

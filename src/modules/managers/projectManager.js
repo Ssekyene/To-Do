@@ -94,6 +94,18 @@ function getProjectById(projectId) {
   return projects.find((project) => project.id === projectId);
 }
 
+function renameProject(projectId, newName) {
+  const project = getProjectById(projectId);
+
+  if (!project) return;
+
+  project.rename(newName);
+
+  save();
+
+  return project;
+}
+
 function addTodo(projectId, todoData) {
   const project = getProjectById(projectId);
 
@@ -178,6 +190,7 @@ export default {
   addProject,
   getProjects,
   getProjectById,
+  renameProject,
   addTodo,
   setActiveProject,
   getActiveProject,

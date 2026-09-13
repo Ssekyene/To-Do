@@ -26,6 +26,10 @@ export default function createProject(name, projectId) {
     return todos;
   }
 
+  function rename(newName) {
+    name = newName.trim();
+  }
+
   return {
     get id() {
       return id;
@@ -40,5 +44,6 @@ export default function createProject(name, projectId) {
     removeTodo,
     getTodo,
     getTodos,
+    rename,
   };
 }
