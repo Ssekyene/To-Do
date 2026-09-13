@@ -588,11 +588,15 @@ dialog select:focus {
         margin-bottom: 12px;
     }
 
+    .projects-section {
+        display: block;
+    }
+
+
     .project-list{
         display: flex;
         gap: 6px;
         flex-wrap: wrap;
-        overflow-x: auto;
         padding-bottom: 4px;
     }
 
