@@ -596,7 +596,7 @@ dialog select:focus {
     .project-list{
         display: flex;
         gap: 6px;
-        flex-wrap: wrap;
+        flex-wrap: wrap;                                                                            
         padding-bottom: 4px;
     }
 
