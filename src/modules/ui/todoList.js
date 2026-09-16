@@ -7,6 +7,9 @@ export default function renderTodoList(main) {
 
   const project = projectManager.getActiveProject();
 
+  const pageContent = document.createElement("div");
+  pageContent.className = "page-content";
+
   const header = document.createElement("div");
   header.classList.add("page-header");
 
@@ -98,5 +101,22 @@ export default function renderTodoList(main) {
     todoList.append(card);
   });
 
-  main.appendChild(todoList);
+  pageContent.appendChild(todoList);
+
+  const footer = document.createElement("footer");
+  footer.className = "app-footer";
+
+  footer.innerHTML = `
+    <span>© 2026 Robert Ssekyene</span>
+    <span>·</span>
+    <a
+      href="https://github.com/Ssekyene"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      GitHub
+    </a>
+  `;
+
+  main.append(pageContent, footer);
 }

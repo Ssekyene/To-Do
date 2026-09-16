@@ -48,22 +48,25 @@ select {
 
 #app {
     display: grid;
-    grid-template-columns: 250px 1fr;
-    min-height: 100vh;
+    grid-template-columns: 250px minmax(0, 1fr);
+    height: 100vh;
+    overflow: hidden;
 }
 
 #sidebar {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    overflow: hidden;
     background: var(--sidebar);
     color: white;
     padding: 24px 16px;
 }
 
-#main-content {
-    padding: 40px;
-    max-width: 1100px;
-    width: 100%;
-    margin: 0 auto;
+.sidebar-header {
+    flex-shrink: 0;
 }
+
 
 .app-brand {
     display: flex;
@@ -109,6 +112,17 @@ select {
 
 .add-project-btn span {
     font-size: 1.25rem;
+}
+
+.projects-section {
+    min-height: 0;
+    overflow-y: auto;
+    padding-top: 8px;
+    scrollbar-width: none;
+}
+
+.projects-section::-webkit-scrollbar {
+    display: none;
 }
 
 .project-list {
@@ -256,12 +270,39 @@ select {
     color: #fecaca;
 }
 
+#main-content {
+    width: 100%;
+    margin: 0 auto;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+}
+
+.page-content {
+    flex: 1;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px;
+}
+
 
 .page-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 28px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 40px;
+    max-width: 1100px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    isolation: isolate;
+    padding-bottom: 20px;
+    background: var(--bg);
+    box-shadow: 0 8px 12px -12px rgba(0, 0, 0, 0.35);
 }
 
 .page-header h1 {
@@ -451,6 +492,30 @@ select {
     transform: scale(0.9);
 }
 
+.app-footer {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    width: 100%;
+    padding: 16px 24px;
+    border-top: 1px solid var(--border);
+    background: #eef1f4;
+    color: var(--muted);
+    font-size: 0.85rem;
+}
+
+.app-footer a {
+    color: var(--primary);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.app-footer a:hover {
+    text-decoration: underline;
+}
+
 
 dialog {
     width: min(500px, calc(100% - 32px));
@@ -581,6 +646,8 @@ dialog select:focus {
     }
 
     #sidebar {
+        height: auto;
+        max-height: 45vh;
         padding: 12px 16px;
     }
 
@@ -606,7 +673,7 @@ dialog select:focus {
         white-space: nowrap;
     }
 
-    #main-content {
+   .page-content {
         padding: 24px 16px;
     }
 
@@ -648,5 +715,4 @@ dialog select:focus {
     .project-actions-btn {
         opacity: 1;
     }
-
-}   
+}

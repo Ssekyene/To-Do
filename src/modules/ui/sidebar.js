@@ -6,19 +6,21 @@ export default function renderSidebar(onProjectSelect) {
     sidebar.replaceChildren();
 
     sidebar.innerHTML = `
-      <div class="app-brand">
-          <div class="brand-icon">✓</div>
-          <span>To-Do</span>
-      </div>
+      <div class="sidebar-header">
+        <div class="app-brand">
+            <div class="brand-icon">✓</div>
+            <span>To-Do</span>
+        </div>
 
-      <button
-          class="add-project-btn"
-          id="new-project-btn"
-          type="button"
-      >
-          <span>+</span>
-          Add project
-      </button>
+        <button
+            class="add-project-btn"
+            id="new-project-btn"
+            type="button"
+        >
+            <span>+</span>
+            Add project
+        </button>
+      </div>
 
       <div class="projects-section">
 
