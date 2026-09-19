@@ -32,6 +32,7 @@ if (!loaded) {
   });
   
   
+  /*
   //another project
   const work = addProject("Work");
   
@@ -66,6 +67,8 @@ if (!loaded) {
     dueDate: "2026-07-20",
     priority: "low",
   });
+
+  */
 }
 
 function setActiveProject(projectId) {
