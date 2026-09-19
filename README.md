@@ -4,6 +4,19 @@ A responsive task management application built with vanilla JavaScript. Users ca
 
 This project was built as part of [The Odin Project](https://www.theodinproject.com/) JavaScript curriculum, with a focus on modular JavaScript, application architecture, Webpack, and DOM manipulation.
 
+## Contents
+ - [Features](#features)
+ - [Technologies Used](#technologies-used)
+ - [Project Structure](#project-structure)
+ - [Getting Started](#getting-started)
+ - [How It Works](#how-it-works)
+ - [What I Learned](#what-i-learned)
+ - [Screenshots](#screenshots)
+ - [Live Demo](#live-demo)
+ - [Author](#author)
+ - [Acknowledgements](#acknowledgements)
+ - [License](#license)
+
 ## Features
 
 * Create and manage projects
