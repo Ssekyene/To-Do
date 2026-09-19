@@ -23,6 +23,7 @@ if (!loaded) {
     description: "Complete the Todo List project",
     dueDate: "2026-07-15",
     priority: "high",
+    completed: true
   });
   
   addTodo(personal.id, {

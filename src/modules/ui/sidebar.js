@@ -22,13 +22,10 @@ export default function renderSidebar(onProjectSelect) {
         </button>
       </div>
 
+      <h2 class="sidebar-heading">Projects</h2>
+
       <div class="projects-section">
-
-          <p class="sidebar-heading">
-              Projects
-          </p>
-
-          <div id="project-list" class="project-list"></div>
+        <div id="project-list" class="project-list"></div>
 
       </div>
     `;

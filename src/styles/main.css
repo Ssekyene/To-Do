@@ -118,11 +118,35 @@ select {
     min-height: 0;
     overflow-y: auto;
     padding-top: 8px;
-    scrollbar-width: none;
+
+      /* Firefox */
+    scrollbar-width: thin;
+    scrollbar-color: #4b5563 transparent;
 }
 
+/* Chrome, Edge, Safari */
 .projects-section::-webkit-scrollbar {
-    display: none;
+    width: 6px;
+}
+
+.projects-section::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.projects-section::-webkit-scrollbar-thumb {
+    background: #4b5563;
+    border-radius: 999px;
+}
+
+.projects-section::-webkit-scrollbar-thumb:hover {
+    background: #6b7280;
+}
+
+
+.sidebar-heading {
+    padding: 0 12px;
+    font-size: 1.4rem;
+    font-weight: 600;
 }
 
 .project-list {
@@ -642,6 +666,7 @@ dialog select:focus {
 @media (max-width: 700px) {
     #app {
         grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1.6fr;
         min-height: auto;
     }
 
@@ -657,6 +682,10 @@ dialog select:focus {
 
     .projects-section {
         display: block;
+    }
+
+    .sidebar-heading {
+        font-size: 1.2rem;
     }
 
 
