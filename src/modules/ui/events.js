@@ -13,6 +13,7 @@ export default function registerEvents(renderApp) {
   const projectList = document.querySelector("#project-list");
   const newTodoButton = document.querySelector("#new-todo-btn");
   const todoList = document.querySelector("#todo-list");
+  const projectsSection = document.querySelector(".projects-section");
 
   if (newProjectButton) {
     newProjectButton.addEventListener("click", () => {
@@ -50,19 +51,49 @@ export default function registerEvents(renderApp) {
           }
         });
 
-        menu.hidden = !menu.hidden;
-
-         if (!menu.hidden) {
-          setTimeout(() => {
-            document.addEventListener(
-              "click",
-              () => {
-                menu.hidden = true;
-              },
-              { once: true }
-            );
-          }, 0);
+        // toggle menu visibility ie hide/show
+        if (!menu.hidden) {
+          menu.hidden = true;
+          return;
         }
+
+        menu.hidden = false;
+        menu.style.visibility = "hidden";
+
+        const buttonRect = actionsButton.getBoundingClientRect();
+
+        let top = buttonRect.bottom + 4;
+        let left = buttonRect.right - menu.offsetWidth;
+
+        // Keep the menu inside the viewport horizontally.
+        if (left < 8) {
+          left = 8;
+        }
+
+        if (left + menu.offsetWidth > window.innerWidth - 8) {
+          left = window.innerWidth - menu.offsetWidth - 8;
+        }
+
+        // Open above the button when there isn't enough room below it.
+        if (top + menu.offsetHeight > window.innerHeight - 8) {
+          top = buttonRect.top - menu.offsetHeight - 4;
+        }
+
+        menu.style.top = `${top}px`;
+        menu.style.left = `${left}px`;
+        menu.style.visibility = "visible";
+
+        // first defer the document event listener handler to 
+        // prevent the first click any where on the document from hiding the menu
+        setTimeout(() => {
+          document.addEventListener(
+            "click",
+            () => {
+              menu.hidden = true;
+            },
+            { once: true }
+          );
+        }, 0);
 
         return;
       }
@@ -126,6 +157,14 @@ export default function registerEvents(renderApp) {
       renderApp();
     });
   }
+
+  if (projectsSection) {
+  projectsSection.addEventListener("scroll", () => {
+    projectList.querySelectorAll(".project-actions-menu").forEach((menu) => {
+      menu.hidden = true;
+    });
+  });
+}
 
   if (newTodoButton) {
     newTodoButton.addEventListener("click", () => {

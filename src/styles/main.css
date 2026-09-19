@@ -115,6 +115,7 @@ select {
 }
 
 .projects-section {
+    flex: 1;
     min-height: 0;
     overflow-y: auto;
     padding-top: 8px;
@@ -236,26 +237,15 @@ select {
     transition: background-color 0.15s ease;
 }
 
-/*.project-item:hover {
-    background-color: var(--sidebar-hover);
-    color: white;
-}*/
-
-/*.project-item.active {
-    background-color: rgba(255, 255, 255, 0.1);
-    color: white;
-    font-weight: 600;
-}*/
-
 .project-item.active .project-icon {
     color: var(--primary);
 }
 
 .project-actions-menu {
-    position: absolute;
-    top: calc(100% + 4px);
-    right: 4px;
-    z-index: 20;
+    position: fixed;
+    /* top: calc(100% + 4px);
+    right: 4px; */
+    z-index: 100;
     width: 150px;
     padding: 5px;
     border: 1px solid rgba(255, 255, 255, 0.08);
