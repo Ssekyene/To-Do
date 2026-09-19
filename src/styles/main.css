@@ -118,6 +118,7 @@ select {
     flex: 1;
     min-height: 0;
     overflow-y: auto;
+    overflow-x: hidden;
     padding-top: 8px;
 
       /* Firefox */
@@ -161,6 +162,7 @@ select {
     display: flex;
     align-items: center;
     width: 100%;
+    min-width: 0;
     border-radius: 7px;
     background-color: transparent;
 
@@ -234,6 +236,7 @@ select {
     color: #d1d5db;
     cursor: pointer;
     text-align: left;
+    text-overflow: ellipsis;
     transition: background-color 0.15s ease;
 }
 
@@ -656,7 +659,7 @@ dialog select:focus {
 @media (max-width: 700px) {
     #app {
         grid-template-columns: 1fr;
-        grid-template-rows: 1fr 1.6fr;
+        grid-template-rows: auto 1fr;
         min-height: auto;
     }
 
@@ -670,9 +673,6 @@ dialog select:focus {
         margin-bottom: 12px;
     }
 
-    .projects-section {
-        display: block;
-    }
 
     .sidebar-heading {
         font-size: 1.2rem;
