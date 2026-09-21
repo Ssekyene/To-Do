@@ -132,11 +132,13 @@ Screenshots of the application can be added here after deployment.
 
 ### Mobile
 
-![Mobile view](todo-mobile.png)
+<div align="center">
+  <img src="todo-mobile.png" alt="Mobile view" style="max-width: 100%; height: auto;">
+</div>
 
-## Live Demo
+<br/>
 
-**Live Demo:** [Coming soon](#)
+**Live Demo:** [https://ssekyene.github.io/To-Do/](https://ssekyene.github.io/To-Do/)
 
 ## Author
 
